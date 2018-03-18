@@ -14,3 +14,5 @@ gem 'pry'
 gem 'nokogiri'
 
 gem 'dotenv'
+
+gem 'redis'

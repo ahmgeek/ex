@@ -1,35 +1,22 @@
 # frozen_string_literal: true
 
 require 'net/http'
-require 'yaml/store'
-require 'pry'
+require "redis"
 
 module Repository
   RecordNotFound = Class.new(StandardError)
-
-  STORE = "#{Dir.pwd}/#{ENV['STORE']}".freeze
-  DB    = YAML::Store.new(STORE)
+  DB = Redis.new
 
   def self.fetch_currencies(from:)
     uri = URI::parse(from)
     Net::HTTP.get(uri)
   end
 
-  def self.find_by(date:, currency:)
-    store = DB
-    rate = nil
-
-    store.transaction do
-      rate = store.fetch(date)[currency]
-      raise RecordNotFound if rate.nil?
-      rate
-    end
+  def self.find_rate_by(date:, currency:)
+    DB.hmget(date, currency).first.to_f
   end
 
   def self.save_curriencies(sheet)
-    store = DB
-    store.transaction do
-      store[sheet.date] = sheet.rates unless store[sheet.date]
-    end
+    DB.mapped_hmset(sheet.date, sheet.rates)
   end
 end

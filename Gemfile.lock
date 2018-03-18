@@ -20,6 +20,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     rainbow (3.0.0)
+    redis (4.0.1)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -52,6 +53,7 @@ DEPENDENCIES
   dotenv
   nokogiri
   pry
+  redis
   rspec
   rubocop
 
