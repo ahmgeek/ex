@@ -3,10 +3,8 @@
 require 'nokogiri'
 require 'ostruct'
 require 'net/http'
-require 'redic'
-require 'dotenv/load'
 
-DB = Redic.new
+require_relative 'db'
 
 CurrencyRates = OpenStruct.new(date: nil, rates: {})
 
@@ -20,11 +18,11 @@ module Scrapper
   private_class_method
 
   def self.store_currencies(currency_sheet)
-    DB.call("HMSET", currency_sheet.date, *currency_sheet.rates.flatten)
+    DB.call('HMSET', currency_sheet.date, *currency_sheet.rates.flatten)
   end
 
   def self.fetch_currencies(from:)
-    uri = URI::parse(from)
+    uri = URI.parse(from)
     Net::HTTP.get(uri)
   end
 
@@ -46,12 +44,9 @@ class Parser < Nokogiri::XML::SAX::Document
     self.storage = storage
   end
 
-  def start_element(name, attrs = [])
-    hashed = attrs.to_h
-
-    storage.date = hashed['time'] if hashed['time']
-    storage.rates.merge!(
-      hashed['currency'] => hashed['rate'].to_f
-    ) if hashed['currency']
+  def start_element(_name, attrs = [])
+    h = attrs.to_h
+    storage.date = h['time'] if h['time']
+    storage.rates.merge!(h['currency'] => h['rate'].to_f) if h['currency']
   end
 end

@@ -6,7 +6,6 @@ require 'json'
 require_relative '../lib/exchange_rate'
 
 Api = Syro.new do
-
   # Health Check!
   get do
     res.text 'OK!'
@@ -36,7 +35,7 @@ Api = Syro.new do
 
     responce  = {
       rate: result,
-      currency: "EUR"
+      currency: 'EUR'
     }
 
     res.text responce.to_json
