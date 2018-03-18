@@ -4,19 +4,25 @@ source 'https://rubygems.org'
 
 gem 'bundler'
 
-gem 'rubocop', require: false
-
-gem 'cutest'
-gem 'rspec'
-
-gem 'pry'
-
+# XML parser
 gem 'nokogiri'
 
-gem 'dotenv'
-
+# Redis client
 gem 'redic'
 
+# APIs for the win
 gem 'syro'
 
-gem 'thin'
+group :development, :test do
+  gem 'pry'
+end
+
+group :development do
+  gem 'thin'
+  gem 'rubocop', require: false
+  gem 'dotenv'
+end
+
+group :test do
+  gem 'rspec'
+end

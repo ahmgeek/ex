@@ -1,9 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-$LOAD_PATH.unshift(File.expand_path('../lib', __dir__))
-
-require 'scrapper'
+require_relative '../lib/scrapper'
+require_relative '../lib/exchange_rate'
 
 require 'irb'
 IRB.start(__FILE__)
