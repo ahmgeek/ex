@@ -2,6 +2,6 @@
 
 require_relative './api/app'
 
-mapping = { "/" => Api }
+mapping = { '/' => Api }
 
 run Rack::URLMap.new(mapping)

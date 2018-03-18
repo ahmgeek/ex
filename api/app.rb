@@ -8,10 +8,10 @@ require 'pry'
 
 Api = Syro.new do
   get do
-    res.text "OK!"
+    res.text 'OK!'
   end
 
-  on "convert" do
+  on 'convert' do
     value     = req.params['value'].to_i
     currency  = req.params['currency'].upcase
     date      = Date.today - 2
