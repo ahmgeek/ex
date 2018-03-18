@@ -20,7 +20,7 @@ module Scrapper
   private_class_method
 
   def self.store_currencies(currency_sheet)
-    DB.call("HMSET", currency_sheet.date, currency_sheet.rate.to_a.flatten)
+    DB.call("HMSET", currency_sheet.date, *currency_sheet.rates.flatten)
   end
 
   def self.fetch_currencies(from:)
