@@ -5,30 +5,31 @@ require 'yaml/store'
 require 'pry'
 
 module Repository
-  STORE = "#{Dir.pwd}/#{ENV['STORE']}".freeze
+  RecordNotFound = Class.new(StandardError)
 
-  def self.find_by(date:, counter:)
-    store = db
-    store.transaction do
-      store.fetch(date)[counter]
-    end
-  end
+  STORE = "#{Dir.pwd}/#{ENV['STORE']}".freeze
+  DB    = YAML::Store.new(STORE)
 
   def self.fetch_currencies(from:)
     uri = URI::parse(from)
     Net::HTTP.get(uri)
   end
 
-  def self.save_curriencies(sheet)
-    store = db
+  def self.find_by(date:, currency:)
+    store = DB
+    rate = nil
+
     store.transaction do
-      store[sheet.date] = sheet.rates unless store[sheet.date]
+      rate = store.fetch(date)[currency]
+      raise RecordNotFound if rate.nil?
+      rate
     end
   end
 
-  private
-
-  def self.db
-    YAML::Store.new(STORE)
+  def self.save_curriencies(sheet)
+    store = DB
+    store.transaction do
+      store[sheet.date] = sheet.rates unless store[sheet.date]
+    end
   end
 end
