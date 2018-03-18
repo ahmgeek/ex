@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'repository'
-
-DB = Redic.new
+require 'redic'
 
 module ExchangeRate
+  DB = Redic.new
+
   def self.at(date, currency)
-    DB.call("HMGET", currency_sheet.date, currency)
+    DB.call("HMGET", date, currency)
   end
 end

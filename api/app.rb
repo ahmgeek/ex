@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.unshift(File.expand_path('../lib', __dir__))
-
 require 'syro'
-require 'exchange_rate'
-require 'pry'
+require_relative '../lib/exchange_rate'
 
 Api = Syro.new do
   get do
