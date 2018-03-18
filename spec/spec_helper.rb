@@ -3,6 +3,8 @@
 $LOAD_PATH.unshift File.expand_path('lib', __dir__)
 
 require 'pry'
+require 'scrapper'
+require 'exchange_rate'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |e|
@@ -15,8 +17,4 @@ RSpec.configure do |config|
 
   # Disable RSpec exposing methods globally on `Module` and `main`
   config.disable_monkey_patching!
-
-  def fixture_file(file_name)
-    File.expand_path("../fixtures/#{file_name}", __FILE__)
-  end
 end
