@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.unshift File.expand_path('lib', __dir__)
-
 require 'pry'
-require 'scrapper'
-require 'exchange_rate'
+
+require_relative '../lib/scrapper'
+require_relative '../lib/exchange_rate'
+require_relative '../api/app'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |e|
