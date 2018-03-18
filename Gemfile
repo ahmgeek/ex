@@ -15,7 +15,7 @@ gem 'nokogiri'
 
 gem 'dotenv'
 
-gem 'redis'
+gem 'redic'
 
 gem 'syro'
 

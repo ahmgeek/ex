@@ -3,7 +3,7 @@
 
 $LOAD_PATH.unshift(File.expand_path('../lib', __dir__))
 
-require 'sync_currencies'
+require 'scrapper'
 
 require 'irb'
 IRB.start(__FILE__)
