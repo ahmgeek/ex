@@ -5,7 +5,6 @@ require 'ostruct'
 require 'net/http'
 require 'redic'
 require 'dotenv/load'
-require 'pry'
 
 DB = Redic.new
 
@@ -21,8 +20,7 @@ module Scrapper
   private_class_method
 
   def self.store_currencies(currency_sheet)
-    values = *currency_sheet.rate.to_a.flatten
-    DB.call("HMSET", currency_sheet.date, values)
+    DB.call("HMSET", currency_sheet.date, currency_sheet.rate.to_a.flatten)
   end
 
   def self.fetch_currencies(from:)
