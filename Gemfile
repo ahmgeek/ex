@@ -3,8 +3,14 @@
 source 'https://rubygems.org'
 
 gem 'bundler'
-gem 'rspec'
+
 gem 'rubocop', require: false
+
 gem 'cutest'
+gem 'rspec'
 
 gem 'pry'
+
+gem 'nokogiri'
+
+gem 'dotenv'
