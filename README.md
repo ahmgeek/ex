@@ -7,7 +7,7 @@ A lib and endpoint to quickly exchange between Europeans currencies and EUR.
 run `rvm use --create --ruby-version ruby-2.4.2@ER`
 to setup ruby versions.
 
-Clone the repo `git clone git@gitlab.com:ahmgeek/exchangefy.git`
+Clone the repo `git clone git@github.com:ahmgeek/ex.git`
 
 run `bundler` in the root of the project dir.
 
