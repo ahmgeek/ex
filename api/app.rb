@@ -14,7 +14,7 @@ module RateConverter
 end
 
 Api = Syro.new do
-  # Instruction
+  # Instructions
   get do
     res.text <<-EOF
       Converts currency values to Euro
@@ -35,7 +35,7 @@ Api = Syro.new do
     EOF
   end
 
-  # /conver
+  # /convert
   # Converts currency values to Euro
   #
   # @param: currency
